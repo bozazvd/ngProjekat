@@ -1,0 +1,47 @@
+
+  <input type="text" [(ngModel)]="searchText"  (input)="onSearch()" placeholder="unesite text"  /> 
+
+<table class="home-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Body</th>
+      <th><div class="tag-select-container">
+        <ng-select 
+          [items]="tags" 
+          [(ngModel)]="selectedTag" 
+          placeholder="Odaberi tag: ">
+        </ng-select>
+      </div></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let post of posts" 
+        [class.highlight]="hasSelectedTag(post)" 
+        (click)="selectedPost = post"
+        [routerLink]="['/post', post.id]">
+      <td>{{ post.id }}</td>
+      <td>{{ post.title }}</td>
+      <td>{{ post.body }}</td>
+      <td>{{post.tags}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal za prikaz detalja posta -->
+<div class="modal" *ngIf="selectedPost">
+  <div class="modal-content">
+    <h2>{{ selectedPost.title }}</h2>
+    <p>{{ selectedPost.body }}</p>
+    <p><strong>Tags:</strong> {{ selectedPost.tags?.join(', ') }}</p>
+    <button (click)="selectedPost = null">Zatvori</button>
+  </div>
+</div>
+
+<!-- Dugmad za paginaciju -->
+<div class="pagination-container">
+  <button (click)="onPageChange(trenutnaStr - 1)" [disabled]="trenutnaStr === 1">Previous</button>
+  <span>{{ trenutnaStr }}</span>
+  <button (click)="onPageChange(trenutnaStr + 1)">Next</button>
+</div>

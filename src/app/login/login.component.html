@@ -1,0 +1,11 @@
+<div class="login-container">
+    <h2>Login</h2>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <label for="username">Username:</label>
+        <input type="text" [(ngModel)]="credentials.username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" [(ngModel)]="credentials.password" name="password" required>
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+  </div>
+  

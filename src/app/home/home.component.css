@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+  }
+  
+  .home-table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .home-table th, .home-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  .home-table th {
+    background-color: #007BFF;
+    color: white;
+  }
+  
+  .home-table tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+  
+  .tag-select-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: 60%;
+  }
+  
+  .modal-content {
+    text-align: center;
+  }
+  
+  .modal button {
+    margin-top: 10px;
+    padding: 10px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagination-container button {
+    padding: 10px 15px;
+    margin: 0 5px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .pagination-container button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  ng-select .ng-dropdown-panel {
+    background-color: gray;
+    margin-left: -74px;
+    /* Postavi sivu pozadinu za dropdown listu */
+}
+
+.highlight {
+    background-color: rgba(255, 0, 0, 0.3) !important;
+}
+  
