@@ -7,8 +7,6 @@ export interface Post {  // Dodajemo "export" ovde
   title: string;
   body: string;
   tags: string[];
-  reactions: { likes: number, dislikes: number };
-  views: number;
   userId: number;
 }
 
@@ -29,19 +27,17 @@ getPostById(postId: number): Observable<Post> {
 
   constructor(private http: HttpClient) {}
 
-  // Metoda za dohvat postova sa servera
+  
   getPosts(searchText: string, selectedTag: string, page: number): Observable<any> {
     const limit = 10;
     const skip = (page - 1) * limit;
-
     let url = `${this.apiUrl}?limit=${limit}&skip=${skip}&q=${searchText}`;
-
     if (selectedTag) {
       url += `&tags=${selectedTag}`;
     }
-
     return this.http.get<any>(url);
   }
+
   setCurrentPost(post: Post): void {
     this.currentPost = post;
   }

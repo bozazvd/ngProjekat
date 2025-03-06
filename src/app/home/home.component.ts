@@ -14,12 +14,14 @@ export class HomeComponent implements OnInit {
   searchText: string = '';
   selectedTag: string = '';
   selectedPost: Post | null = null;
+  isLoggedIn: boolean = false; // Provera da li je korisnik ulogovan
 
   tags: string[] = ["history", "american", "crime", "magical", "french"]; // Lista tagova
 
-  constructor(private servicesService: ServicesService ,private router: Router) {}
+  constructor(private servicesService: ServicesService, private router: Router) {}
 
   ngOnInit(): void {
+    this.checkLoginStatus(); // Provera statusa logovanja
     this.getPosts();
   }
 
@@ -49,6 +51,21 @@ export class HomeComponent implements OnInit {
     this.servicesService.setCurrentPost(post);  // Čuvanje izabrane objave u servis
     this.router.navigate(['/post', post.id]);  // Navigacija na detaljnu stranicu sa ID-em objave
   }
-  
-  
+
+  // Provera da li je korisnik ulogovan
+  checkLoginStatus(): void {
+    const user = localStorage.getItem('user') || sessionStorage.getItem('user');
+    this.isLoggedIn = !!user;  // Ako postoji user, postavljamo isLoggedIn na true
+    if (!this.isLoggedIn) {
+      this.router.navigate(['/login']); // Ako nije ulogovan, preusmeravamo ga na login stranicu
+    }
+  }
+
+  // Logout funkcionalnost
+  onLogout(): void {
+    localStorage.removeItem('user'); // Briše sačuvanog korisnika ako je Remember Me bio uključen
+    sessionStorage.removeItem('user'); // Briše korisnika iz sesije
+    this.isLoggedIn = false; // Ažuriramo status logovanja
+    this.router.navigate(['/login']); // Preusmerava korisnika na login
+  }
 }
